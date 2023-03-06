@@ -1,0 +1,31 @@
+class Solution {
+public:
+    int findKthPositive(vector<int>& arr, int k) {
+       stack<int>st;
+       vector<int>temp;
+       int ans; int t=k;
+       for(int i=arr.size()-1;i>=0;i--){
+           st.push(arr[i]);
+       }
+       int j=1;
+       while(!st.empty()){
+           if(st.top()==j){
+              st.pop();
+              j++;
+           }
+           else{
+               temp.push_back(j);
+               j++;
+           }
+       }
+       if(temp.size()<=k){
+           while(k){
+           temp.push_back(j);
+           j++;
+           k--;
+       }
+       }
+       ans = temp[t-1];
+       return ans;
+    }
+};
